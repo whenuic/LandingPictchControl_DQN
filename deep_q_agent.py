@@ -1,9 +1,6 @@
 import random
 import time
 
-import time
-
-
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -14,7 +11,6 @@ from pathlib import Path
 from collections import deque
 from itertools import repeat
 
-from utils import *
 
 script_name = Path(__file__).stem
 seed_val = int(time.time())

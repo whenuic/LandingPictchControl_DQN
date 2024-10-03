@@ -50,19 +50,6 @@ def ProcessState(state, agent, dt):
         state_out.append(0)
         state_out.append(0)
 
-    # length = len(agent.memory)
-    # observation_window = 40
-    # num_to_append = observation_window
-    # while num_to_append > 0:
-    #     i = observation_window - num_to_append + 1
-    #     if length - i >= 0:
-    #         state.append(agent.memory[length - i][0][4])
-    #         state.append(agent.memory[length - i][0][5])
-    #     else:
-    #         state.append(0)
-    #         state.append(0)
-    #     num_to_append -= 1
-
     return state_out
 
 

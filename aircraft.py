@@ -4,7 +4,6 @@ import pymunk.pygame_util
 import pygame
 import pymunk.vec2d
 
-from utils import *
 from lift_coef_data import *
 
 
@@ -124,15 +123,12 @@ class Aircraft:
         if new_state[4] < -450 or new_state[4] > 0:
             reward += -5
 
-        # print(new_state[5])
         distance_coef = self.rigidbody.position.x / self.x_landing_point
         if new_state[5] > 2.8 and new_state[5] < 3.2:
             reward += 3 * distance_coef
         else:
             if new_state[5] > 3.5 or new_state[5] < 2.5:  # path_degree
-                # done = True
                 reward += -1 * distance_coef
-                # info = ">3.5 deg"
             else:
                 reward += -2 * distance_coef
 
@@ -179,8 +175,6 @@ class Aircraft:
         position = self.rigidbody.position
         x = position.x
         y = self.y_offset - position.y
-
-        # update velocities
 
         # update air density
         self.air_density = ((1.0 - y / 0.3048 / 145454.0) ** 4.2493) * 1.225
