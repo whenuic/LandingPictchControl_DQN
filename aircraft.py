@@ -74,7 +74,7 @@ class Aircraft:
         self.steps += 1
 
         self.UpdateState(dt)
-        thrust = action[0] + 0.645
+        thrust = action[0] + 0.63
         self.ApplyInput(thrust, 0.0, -0.33)
         self.ApplyThrustForce()
         self.ApplyMainWingForce()

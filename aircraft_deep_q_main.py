@@ -28,13 +28,26 @@ def ProcessState(state, agent, dt):
     else:
         state_out.append(0)
 
-    if length >= 20:
+    if length >= 30:
         state_out.append(agent.memory[length - 10][0][4])
         state_out.append(agent.memory[length - 10][0][5])
         state_out.append(agent.memory[length - 10][0][6])
         state_out.append(agent.memory[length - 20][0][4])
         state_out.append(agent.memory[length - 20][0][5])
         state_out.append(agent.memory[length - 20][0][6])
+        state_out.append(agent.memory[length - 30][0][4])
+        state_out.append(agent.memory[length - 30][0][5])
+        state_out.append(agent.memory[length - 30][0][6])
+    elif length >= 20:
+        state_out.append(agent.memory[length - 10][0][4])
+        state_out.append(agent.memory[length - 10][0][5])
+        state_out.append(agent.memory[length - 10][0][6])
+        state_out.append(agent.memory[length - 20][0][4])
+        state_out.append(agent.memory[length - 20][0][5])
+        state_out.append(agent.memory[length - 20][0][6])
+        state_out.append(0)
+        state_out.append(0)
+        state_out.append(0)
     elif length >= 10:
         state_out.append(agent.memory[length - 10][0][4])
         state_out.append(agent.memory[length - 10][0][5])
@@ -42,7 +55,13 @@ def ProcessState(state, agent, dt):
         state_out.append(0)
         state_out.append(0)
         state_out.append(0)
+        state_out.append(0)
+        state_out.append(0)
+        state_out.append(0)
     else:
+        state_out.append(0)
+        state_out.append(0)
+        state_out.append(0)
         state_out.append(0)
         state_out.append(0)
         state_out.append(0)
@@ -68,7 +87,7 @@ if __name__ == "__main__":
     FPS = 60
     dt = 0.1
 
-    state_dim = 13
+    state_dim = 16
     action_dim = 21
     aircraft = Aircraft(
         152.4,  # height in meters, 500ft = 152.4m
@@ -100,7 +119,7 @@ if __name__ == "__main__":
         episode_reward += reward
 
         pygame.display.set_caption(
-            f"{round(state_new[5], 3)},  {round(action[0] + 0.645, 3)}, {episode_reward}"
+            f"{round(state_new[5], 2)},  {round(action[0] + 0.63, 3)}, {round(state_new[4], 3)}, {episode_reward}"
         )
 
         # train short memory

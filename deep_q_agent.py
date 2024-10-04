@@ -24,10 +24,11 @@ MAX_MEMORY = 100_000
 BATCH_SIZE = 2000
 LR = 0.005
 GAMMA = 0.95
-EPSILON = 50
+EPSILON = 200
+EXPLORATION_RATE = 2
 
 LOAD_MODEL_FROM_FILE = True
-LOAD_MODEL_FROM_FILE_NAME = "model_6359.pth"
+LOAD_MODEL_FROM_FILE_NAME = ""
 
 
 class Q_Network(nn.Module):
@@ -165,7 +166,7 @@ class Agent:
         self.epsilon = (self.random_epsilon - num_of_episodes) / 2
         final_move = list(repeat(0, 21))
         random_value = random.randint(0, self.random_epsilon)
-        if random_value < self.epsilon or random_value < 2:
+        if random_value < self.epsilon or random_value <= EXPLORATION_RATE:
             move = random.randint(0, 20)
             final_move[move] = 1
             # print(f"random action: {np.argmax(final_move)}")
