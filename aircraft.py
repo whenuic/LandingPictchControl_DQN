@@ -98,39 +98,33 @@ class Aircraft:
                 self.rigidbody.position.x >= self.x_landing_point - 10
                 and self.rigidbody.position.x <= self.x_landing_point + 10
             ):
-                reward = 10000
+                reward = 100
                 info = "succeeded perfect"
             elif (
                 self.rigidbody.position.x >= self.x_landing_point - 50
                 and self.rigidbody.position.x <= self.x_landing_point + 50
             ):
-                reward = 7500
+                reward = 75
                 info = "succeeded normal"
             elif (
                 self.rigidbody.position.x > self.x_landing_point + 50
                 and self.rigidbody.position.x <= self.x_landing_point + 150
             ):
-                reward = 7500
+                reward = 50
                 info = "succeeded normal"
             else:
-                reward = -10000
+                reward = -100
                 info = "fail"
             return new_state, reward, done, info
 
-        if new_state[3] > 11 or new_state[3] < -6:  # body_aoa
-            reward += -5
+        if new_state[3] > 0 and new_state[3] < 5:  # body_aoa
+            reward += 1
 
-        if new_state[4] < -450 or new_state[4] > 0:
-            reward += -5
+        if new_state[4] > -400 and new_state[4] < 0:
+            reward += 1
 
-        distance_coef = self.rigidbody.position.x / self.x_landing_point
         if new_state[5] > 2.8 and new_state[5] < 3.2:
-            reward += 3 * distance_coef
-        else:
-            if new_state[5] > 3.5 or new_state[5] < 2.5:  # path_degree
-                reward += -1 * distance_coef
-            else:
-                reward += -2 * distance_coef
+            reward += 3
 
         return new_state, reward, done, info
 
