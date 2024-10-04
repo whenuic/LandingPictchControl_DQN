@@ -19,6 +19,8 @@ def Plot(scores, average_scores, last_100_average, plot_file_name):
     plt.text(len(average_scores) - 1, average_scores[-1], str(average_scores[-1]))
     plt.text(len(last_100_average) - 1, last_100_average[-1], str(last_100_average[-1]))
 
+    plt.autoscale()
+
     plt.legend(["Score", "average", "last_100_average"], loc="upper left")
 
     plt.savefig(plot_file_name)

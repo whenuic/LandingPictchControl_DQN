@@ -141,12 +141,12 @@ if __name__ == "__main__":
             num_of_episodes += 1
             episode_reward = 0
 
-            # Plot(
-            #     plot_scores,
-            #     plot_average_scores,
-            #     plot_last_100_average_scores,
-            #     plot_file_name,
-            # )
+            Plot(
+                plot_scores,
+                plot_average_scores,
+                plot_last_100_average_scores,
+                plot_file_name,
+            )
 
             # PrintEpisodeResult(
             #     episode_reward,
