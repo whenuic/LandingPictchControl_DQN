@@ -98,22 +98,16 @@ class Aircraft:
                 self.rigidbody.position.x >= self.x_landing_point - 10
                 and self.rigidbody.position.x <= self.x_landing_point + 10
             ):
-                reward = 100
+                reward = 1000
                 info = "succeeded perfect"
             elif (
                 self.rigidbody.position.x >= self.x_landing_point - 50
                 and self.rigidbody.position.x <= self.x_landing_point + 50
             ):
-                reward = 75
-                info = "succeeded normal"
-            elif (
-                self.rigidbody.position.x > self.x_landing_point + 50
-                and self.rigidbody.position.x <= self.x_landing_point + 150
-            ):
-                reward = 50
+                reward = 750
                 info = "succeeded normal"
             else:
-                reward = -100
+                reward = -1000
                 info = "fail"
             return new_state, reward, done, info
 
@@ -151,7 +145,7 @@ class Aircraft:
             self.x_landing_point - self.rigidbody.position.x,  # x_dist_to_landing_point
             projected_velocity.length,  # airspeed
             self.angle_of_attack,  # body_aoa
-            self.rigidbody.velocity.y * 60 / 0.3048,  # vertical_rate
+            -self.rigidbody.velocity.y * 60 / 0.3048,  # vertical_rate
             math.degrees(
                 math.atan(
                     (self.y_offset - self.rigidbody.position.y)
